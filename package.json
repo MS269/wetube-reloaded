@@ -1,0 +1,16 @@
+{
+  "name": "wetube",
+  "version": "1.0.0",
+  "description": "My first NodeJS project!",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MS269/wetube-reloaded.git"
+  },
+  "author": "MS269",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MS269/wetube-reloaded/issues"
+  },
+  "homepage": "https://github.com/MS269/wetube-reloaded#readme"
+}
