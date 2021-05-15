@@ -1,0 +1,9 @@
+extends base
+include mixins/video
+
+block content
+    h2 Welcome here you will see tending videos
+    each v in videos
+        +video(v)
+    else
+        li Sorry nothing found.
