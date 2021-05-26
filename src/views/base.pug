@@ -17,8 +17,9 @@ html(lang="ko")
             a(href="/") Home
           li
             a(href="/search") Search
-          li
-            a(href="/videos/upload") Upload Video
+          if loggedIn
+            li
+              a(href="/videos/upload") Upload Video
         ul
           if loggedIn
             li
@@ -27,9 +28,9 @@ html(lang="ko")
               a(href="/users/edit") Edit Profile
           else
             li
-              a(href="/join") Join
-            li
               a(href="/login") Login
+            li
+              a(href="/join") Join
     main
       block content
     include partials/footer
