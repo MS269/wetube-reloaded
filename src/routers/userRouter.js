@@ -10,7 +10,11 @@ import {
   remove,
   see,
 } from "../controllers/userController";
-import { privateOnlyMiddleware, publicOnlyMiddleware } from "../middlewares";
+import {
+  privateOnlyMiddleware,
+  publicOnlyMiddleware,
+  uploadMiddleware,
+} from "../middlewares";
 
 const userRouter = express.Router();
 
@@ -19,7 +23,7 @@ userRouter
   .route("/edit")
   .all(privateOnlyMiddleware)
   .get(getEdit)
-  .post(postEdit);
+  .post(uploadMiddleware.single("avatar"), postEdit);
 userRouter
   .route("/change-password")
   .all(privateOnlyMiddleware)
