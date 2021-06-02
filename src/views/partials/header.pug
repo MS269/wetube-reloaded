@@ -1,0 +1,22 @@
+header
+  h1= pageTitle
+  nav
+    ul
+      li
+        a(href="/") Home
+      li
+        a(href="/search") Search
+      if loggedIn
+        li
+          a(href="/videos/upload") Upload Video
+    ul
+      if loggedIn
+        li
+          a(href="/users/logout") Logout
+        li
+          a(href="/users/edit") Edit Profile
+      else
+        li
+          a(href="/login") Login
+        li
+          a(href="/join") Join

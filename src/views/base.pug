@@ -2,35 +2,9 @@
 //- prettier-ignore: because of reasons
 doctype html
 html(lang="ko")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    link(rel="stylesheet", href="https://unpkg.com/mvp.css")
-    title #{ pageTitle } | #{ siteName }
+  include partials/head
   body
-    header
-      h1= pageTitle
-      nav
-        ul
-          li
-            a(href="/") Home
-          li
-            a(href="/search") Search
-          if loggedIn
-            li
-              a(href="/videos/upload") Upload Video
-        ul
-          if loggedIn
-            li
-              a(href="/users/logout") Logout
-            li
-              a(href="/users/edit") Edit Profile
-          else
-            li
-              a(href="/login") Login
-            li
-              a(href="/join") Join
+    include partials/header
     main
       block content
     include partials/footer
