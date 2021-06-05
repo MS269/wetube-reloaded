@@ -7,7 +7,6 @@ import {
   finishGithubLogin,
   getChangePassword,
   postChangePassword,
-  remove,
   see,
 } from "../controllers/userController";
 import {
@@ -31,7 +30,6 @@ userRouter
   .post(postChangePassword);
 userRouter.get("/github/start", publicOnlyMiddleware, startGithubLogin);
 userRouter.get("/github/finish", publicOnlyMiddleware, finishGithubLogin);
-userRouter.get("/remove", remove);
 userRouter.get("/:id([0-9a-f]{24})", see);
 
 export default userRouter;
