@@ -5,6 +5,12 @@ block content
   div
     p= video.description
     small= video.createdAt
-  a(href=`${video.id}/edit`) Edit Video &rarr;
-  br
-  a(href=`${video.id}/delete`) Delete Video &rarr;
+    br
+
+    //- prettier-ignore: because of a white space
+    small Uploaded by 
+      a(href="/users/${video.owner._id")= video.owner.name
+  if String(video.owner._id) === String(loggedInUser._id)
+    a(href=`${video.id}/edit`) Edit Video &rarr;
+    br
+    a(href=`${video.id}/delete`) Delete Video &rarr;
