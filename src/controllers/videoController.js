@@ -2,7 +2,9 @@ import User from "../models/User";
 import Video from "../models/Video";
 
 export const home = async (req, res) => {
-  const videos = await Video.find({}).sort({ createdAt: "desc" });
+  const videos = await Video.find({})
+    .sort({ createdAt: "desc" })
+    .populate("owner");
   return res.render("home", { pageTitle: "Home", videos });
 };
 
@@ -81,7 +83,6 @@ export const postUpload = async (req, res) => {
   } catch (error) {
     return res.status(400).render("upload", {
       pageTitle: "Upload Video",
-      errorMessage: error._message,
     });
   }
 };
@@ -112,7 +113,7 @@ export const search = async (req, res) => {
       title: {
         $regex: new RegExp(keyword, "i"),
       },
-    });
+    }).populate("owner");
   }
   return res.render("search", { pageTitle: "Search", videos });
 };

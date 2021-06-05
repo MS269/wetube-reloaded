@@ -1,8 +1,6 @@
 extends base
 
 block content
-  if errorMessage
-    span= errorMessage
   form(method="POST")
     input(name="name", placeholder="Name", type="text", required)
     input(name="email", placeholder="Email", type="email", required)
@@ -16,7 +14,8 @@ block content
     )
     input(name="location", placeholder="Location", type="text", required)
     input(type="submit", value="Join")
-  hr
-  div
-    span Already have an account?
+    include partials/social-login
+  .auth-switch
+    //- prettier-ignore: because of a white space
+    span Already have an account? 
     a(href="/login") Log in now &rarr;

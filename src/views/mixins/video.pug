@@ -1,9 +1,14 @@
 mixin video(video)
-  div
-    h4
-      a(href=`/videos/${video.id}`)= video.title
-    p= video.description
-    each hashtag in video.hashtags
-      li= hashtag
-    small= video.createdAt
-    hr
+  a.video-mixin(href=`/videos/${video.id}`)
+    .video-mixin__thumb
+    .video-mixin__data
+      span.video-mixin__title= video.title
+      .video-mixin__meta
+        //- prettier-ignore: because of a white space
+        span #{ video.owner.name } • 
+        //- prettier-ignore: because of a white space
+        span #{ video.meta.views } 
+          if video.meta.views !== 1
+            | views
+          else
+            | view

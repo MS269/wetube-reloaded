@@ -1,6 +1,5 @@
 import fetch from "node-fetch";
 import bcrypt from "bcrypt";
-import Video from "../models/Video";
 import User from "../models/User";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
@@ -11,14 +10,12 @@ export const postJoin = async (req, res) => {
   if (password !== password2) {
     return res.status(400).render("join", {
       pageTitle,
-      errorMessage: "Password confirmation does not match.",
     });
   }
   const exists = await User.exists({ $or: [{ username }, { email }] });
   if (exists) {
     return res.status(400).render("join", {
       pageTitle,
-      errorMessage: "This username/email is already taken.",
     });
   }
   try {
@@ -32,7 +29,6 @@ export const postJoin = async (req, res) => {
   } catch (error) {
     return res.status(400).render("join", {
       pageTitle,
-      errorMessage: error._message,
     });
   }
   return res.redirect("/login");
@@ -47,14 +43,12 @@ export const postLogin = async (req, res) => {
   if (!user) {
     return res.status(400).render("login", {
       pageTitle: "Login",
-      errorMessage: "An account with this username does not exists.",
     });
   }
   const match = await bcrypt.compare(password, user.password);
   if (!match) {
     return res.status(400).render("login", {
       pageTitle: "Login",
-      errorMessage: "Wrong password",
     });
   }
   req.session.loggedIn = true;
@@ -162,7 +156,6 @@ export const postEdit = async (req, res) => {
     if (foundUser && foundUser._id.toString() !== _id) {
       return res.status(400).render("edit-profile", {
         pageTitle: "Edit Profile",
-        errorMessage: "This username/email is already taken.",
       });
     }
   }
@@ -200,13 +193,11 @@ export const postChangePassword = async (req, res) => {
   if (!match) {
     return res.status(400).render("users/change-password", {
       pageTitle: "Change Password",
-      errorMessage: "The current password is incorrect.",
     });
   }
   if (newPassword !== newPassword2) {
     return res.status(400).render("users/change-password", {
       pageTitle: "Change Password",
-      errorMessage: "The password does not match the confirmation.",
     });
   }
   user.password = newPassword;
@@ -216,7 +207,13 @@ export const postChangePassword = async (req, res) => {
 
 export const see = async (req, res) => {
   const { id } = req.params;
-  const user = await User.findById(id).populate("videos");
+  const user = await User.findById(id).populate({
+    path: "videos",
+    populate: {
+      path: "owner",
+      model: "User",
+    },
+  });
   if (!user) {
     return res.status(404).render("404", { pageTitle: "User not found" });
   }

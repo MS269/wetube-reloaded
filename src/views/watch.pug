@@ -6,7 +6,6 @@ block content
     p= video.description
     small= video.createdAt
     br
-
     //- prettier-ignore: because of a white space
     small Uploaded by 
       a(href=`/users/${video.owner._id}`)= video.owner.name
