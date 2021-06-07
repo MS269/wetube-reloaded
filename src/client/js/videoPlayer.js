@@ -64,7 +64,7 @@ const formatTime = (seconds) => {
   return new Date(seconds * 1000).toISOString().substr(from, length);
 };
 
-const handleLoadedData = () => {
+const handleLoadedMetadata = () => {
   totalTime.innerText = formatTime(video.duration);
   timeline.max = Math.floor(video.duration);
 };
@@ -123,12 +123,18 @@ const handleKeyup = (event) => {
   }
 };
 
+const handleEnded = () => {
+  const { id } = videoContainer.dataset;
+  fetch(`/api/videos/${id}/view`, { method: "POST" });
+};
+
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeInput);
-video.addEventListener("loadeddata", handleLoadedData);
+video.addEventListener("loadedmetadata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
 video.addEventListener("click", handlePlayClick);
+video.addEventListener("ended", handleEnded);
 timeline.addEventListener("input", handleTimelineInput);
 fullscreenBtn.addEventListener("click", handleFullscreen);
 videoContainer.addEventListener("mousemove", handleMouseMove);
