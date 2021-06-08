@@ -1,6 +1,8 @@
 extends base
 
 block content
+  div
+    button#startBtn Start Recording
   form(method="POST", enctype="multipart/form-data")
     label(for="video") Video File
     input#video(name="video", type="file", accept="video/*", required)
@@ -25,3 +27,6 @@ block content
       type="text"
     )
     input(type="submit", value="Upload Video")
+
+block scripts
+  script(src="/static/js/recorder.js")
