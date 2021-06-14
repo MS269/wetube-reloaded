@@ -21,7 +21,7 @@ export const getEdit = async (req, res) => {
   const {
     params: { id },
     session: {
-      user: { _id },
+      loggedInUser: { _id },
     },
   } = req;
   const video = await Video.findById(id);
@@ -65,7 +65,7 @@ export const postUpload = async (req, res) => {
     file: { path: fileUrl },
     body: { title, description, hashtags },
     session: {
-      user: { _id },
+      loggedInUser: { _id },
     },
   } = req;
   try {
@@ -91,7 +91,7 @@ export const getDelete = async (req, res) => {
   const {
     params: { id },
     session: {
-      user: { _id },
+      loggedInUser: { _id },
     },
   } = req;
   const video = await Video.findById(id);

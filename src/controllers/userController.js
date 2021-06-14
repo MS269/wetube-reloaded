@@ -123,7 +123,7 @@ export const finishGithubLogin = async (req, res) => {
     });
   }
   req.session.loggedIn = true;
-  req.session.user = user;
+  req.session.loggedInUser = user;
   return res.redirect("/");
 };
 
@@ -139,7 +139,7 @@ export const getEdit = (req, res) => {
 export const postEdit = async (req, res) => {
   const {
     session: {
-      user: { _id, avatarUrl, email: sessionEmail, username: sessionUsername },
+      loggedInUser: { _id, avatarUrl, email: sessionEmail, username: sessionUsername },
     },
     body: { name, email, username, location },
     file,
@@ -170,12 +170,12 @@ export const postEdit = async (req, res) => {
     },
     { new: true }
   );
-  req.session.user = updatedUser;
+  req.session.loggedInUser = updatedUser;
   return res.redirect("/users/edit");
 };
 
 export const getChangePassword = (req, res) => {
-  if (req.session.user.socailOnly) {
+  if (req.session.loggedInUser.socailOnly) {
     return res.redirect("/");
   }
   return res.render("users/change-password", { pageTitle: "Change Password" });
@@ -184,7 +184,7 @@ export const getChangePassword = (req, res) => {
 export const postChangePassword = async (req, res) => {
   const {
     session: {
-      user: { _id },
+      loggedInUser: { _id },
     },
     body: { oldPassword, newPassword, newPassword2 },
   } = req;
