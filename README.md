@@ -37,6 +37,10 @@ npm run dev:assets
 
 ## IU - Killing Voice &rarr; [Here](https://youtu.be/wDfqXR_5yyQ)
 
+<!-- Image -->
+
+![IU Killing Voice](https://i.ytimg.com/vi/wDfqXR_5yyQ/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA8P2CSh3E5lv39gwkC_8bMLJLAhw)
+
 <!-- Numbered list -->
 
 ### Timeline:
@@ -55,13 +59,9 @@ npm run dev:assets
 12. [15:32](https://www.youtube.com/watch?v=wDfqXR_5yyQ&t=932s) 라일락
 13. [17:07​](https://www.youtube.com/watch?v=wDfqXR_5yyQ&t=1027s) 내 손을 잡아 (앵콜)
 
-<!-- Image -->
-
-![My favorite celebrity IU](https://user-images.githubusercontent.com/59796004/122629275-d17b8f00-d0f6-11eb-8f89-bea2953407f0.png)
-
 <!-- Table -->
 
-|  IU   | Image |
-| :---: | :---: |
-| 팔레트 | <img src="https://user-images.githubusercontent.com/59796004/122629282-df311480-d0f6-11eb-8fde-161c865e6be2.png" width="1000"> |
+|    IU     |                                                             Image                                                              |
+| :-------: | :----------------------------------------------------------------------------------------------------------------------------: |
+|  팔레트   | <img src="https://user-images.githubusercontent.com/59796004/122629282-df311480-d0f6-11eb-8fde-161c865e6be2.png" width="1000"> |
 | 꽃갈피 둘 | <img src="https://user-images.githubusercontent.com/59796004/122629285-e0fad800-d0f6-11eb-88dc-6173c31a22cf.png" width="1000"> |
