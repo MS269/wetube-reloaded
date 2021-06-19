@@ -61,7 +61,7 @@ npm run dev:assets
 
 <!-- Table -->
 
-|    IU     |                                                             Image                                                              |
+|  Albums   |                                                             Images                                                             |
 | :-------: | :----------------------------------------------------------------------------------------------------------------------------: |
 |  팔레트   | <img src="https://user-images.githubusercontent.com/59796004/122629282-df311480-d0f6-11eb-8fde-161c865e6be2.png" width="1000"> |
 | 꽃갈피 둘 | <img src="https://user-images.githubusercontent.com/59796004/122629285-e0fad800-d0f6-11eb-88dc-6173c31a22cf.png" width="1000"> |
