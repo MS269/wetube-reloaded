@@ -38,7 +38,7 @@ export const postEdit = async (req, res) => {
   const {
     params: { id },
     session: {
-      user: { _id },
+      loggedInUser: { _id },
     },
     body: { title, description, hashtags },
   } = req;
