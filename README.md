@@ -39,7 +39,7 @@ npm run dev:assets
 
 <!-- Image -->
 
-![IU Killing Voice](https://i.ytimg.com/vi/wDfqXR_5yyQ/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA8P2CSh3E5lv39gwkC_8bMLJLAhw)
+[![IU Killing Voice](https://i.ytimg.com/vi/wDfqXR_5yyQ/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA8P2CSh3E5lv39gwkC_8bMLJLAhw)](https://youtu.be/wDfqXR_5yyQ)
 
 <!-- Numbered list -->
 
