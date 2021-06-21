@@ -1,8 +1,8 @@
 const video = document.querySelector("video");
 const playBtn = document.getElementById("play");
-const playBtnIcon = playBtn.querySelector("i");
+const playIcon = playBtn.querySelector("i");
 const muteBtn = document.getElementById("mute");
-const muteBtnIcon = muteBtn.querySelector("i");
+const muteIcon = muteBtn.querySelector("i");
 const volumeRange = document.getElementById("volume");
 const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
@@ -23,14 +23,12 @@ const handlePlayClick = () => {
   } else {
     video.pause();
   }
-  playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-pause";
+  playIcon.classList = video.paused ? "fas fa-play" : "fas fa-pause";
 };
 
 const handleMute = () => {
   video.muted = !video.muted;
-  muteBtnIcon.classList = video.muted
-    ? "fas fa-volume-mute"
-    : "fas fa-volume-up";
+  muteIcon.classList = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
   volumeRange.value = video.muted ? 0 : volumeValue;
 };
 
@@ -39,9 +37,7 @@ const handleVolumeInput = (event) => {
     target: { value },
   } = event;
   video.muted = value < 0.1;
-  muteBtnIcon.classList = video.muted
-    ? "fas fa-volume-mute"
-    : "fas fa-volume-up";
+  muteIcon.classList = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
   volumeValue = value;
   video.volume = value;
 };
@@ -112,13 +108,11 @@ const handleMouseLeave = () =>
 
 const handleKeyup = (event) => {
   const { code: key } = event;
-  if (key == "Space") {
+  if (key === "Space") {
     handlePlayClick();
-  }
-  if (key == "KeyM") {
+  } else if (key === "KeyM") {
     handleMute();
-  }
-  if (key == "KeyF") {
+  } else if (key === "KeyF") {
     handleFullscreen();
   }
 };
