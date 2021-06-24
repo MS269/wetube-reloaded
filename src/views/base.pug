@@ -1,5 +1,7 @@
 //- npx prettier --write "**/*.pug"
 //- prettier-ignore: because of reasons
+include mixins/message
+
 doctype html
 html(lang="en")
   head
@@ -13,6 +15,12 @@ html(lang="en")
     link(rel="stylesheet", href="/static/css/styles.css")
     title #{ pageTitle } | #{ siteName }
   body
+    if messages.error
+      +message("error", messages.error)
+    if messages.info
+      +message("info", messages.info)
+    if messages.success
+      +message("success", messages.success)
     include partials/header
     main
       block content
