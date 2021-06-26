@@ -5,11 +5,14 @@ const videoSchema = new mongoose.Schema({
   fileUrl: { type: String, required: true },
   thumbUrl: { type: String, required: true },
   description: { type: String, required: true, trim: true, maxLength: 140 },
-  createdAt: { type: Date, required: true, default: Date.now },
-  hashtags: [{ type: String, required: true, trim: true }],
+  createdAt: { type: Date, default: Date.now, required: true },
+  hashtags: [{ type: String, trim: true }],
   meta: {
-    views: { type: Number, required: true, default: 0 },
+    views: { type: Number, default: 0, required: true },
   },
+  comments: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "Comment", required: true },
+  ],
   owner: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 });
 
@@ -18,5 +21,4 @@ videoSchema.static("formatHashtags", (hashtags) =>
 );
 
 const Video = mongoose.model("Video", videoSchema);
-
 export default Video;
