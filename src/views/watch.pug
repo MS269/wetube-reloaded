@@ -19,23 +19,38 @@ block content
         min="0"
       )
       .videoControls__volume
-        input#volume(type="range", step="0.1", value="0.5", min="0", max="1")
         span#mute
           i.fas.fa-volume-up
+        input#volume(type="range", step="0.1", value="0.5", min="0", max="1")
       div
         span#fullscreen
           i.fas.fa-expand
-  div
-    p= video.description
-    small= video.createdAt
-    br
+  .video__data
+    p.video__title= video.title
     //- prettier-ignore: because of a white space
-    small Uploaded by 
+    small.video__owner Uploaded by 
       a(href=`/users/${video.owner._id}`)= video.owner.name
-  if String(video.owner._id) === String(loggedInUser._id)
-    a(href=`${video.id}/edit`) Edit Video &rarr;
-    br
-    a(href=`${video.id}/delete`) Delete Video &rarr;
-
+    small.video__createdAt= new Date(video.createdAt).toLocaleDateString('ko-kr', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+    if String(video.owner._id) === String(loggedInUser._id)
+      a(href=`${video.id}/edit`) Edit Video &rarr;
+      a(href=`${video.id}/delete`) Delete Video &rarr;
+    if loggedIn
+      .video__add-comments
+        form#commentForm.video__comment-form
+          textarea(
+            cols="30",
+            rows="10",
+            placeholder="Write a nice commment..."
+          )
+          button Add Comment
+    .video__comments
+      ul
+        each comment in video.comments.reverse()
+          li.video__comment(data-id=comment.id)
+            i.fas.fa-comment
+            span  #{ comment.text }
+            span ❌
 block scripts
   script(src="/static/js/videoPlayer.js")
+  if loggedIn
+    script(src="/static/js/commentSection.js") 

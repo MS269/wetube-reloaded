@@ -26,7 +26,7 @@ const handlePlayClick = () => {
   playIcon.classList = video.paused ? "fas fa-play" : "fas fa-pause";
 };
 
-const handleMute = () => {
+const handleMuteClick = () => {
   video.muted = !video.muted;
   muteIcon.classList = video.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
   volumeRange.value = video.muted ? 0 : volumeValue;
@@ -61,12 +61,12 @@ const formatTime = (seconds) => {
 };
 
 const handleLoadedMetadata = () => {
-  totalTime.innerText = formatTime(video.duration);
+  totalTime.innerText = formatTime(Math.floor(video.duration));
   timeline.max = Math.floor(video.duration);
 };
 
 const handleTimeUpdate = () => {
-  currentTime.innerText = formatTime(video.currentTime);
+  currentTime.innerText = formatTime(Math.floor(video.currentTime));
   timeline.value = Math.floor(video.currentTime);
 };
 
@@ -79,7 +79,7 @@ const handleTimelineInput = (event) => {
 
 const handleFullscreen = () => {
   const fullscreen = document.fullscreenElement;
-  if (fullscreen !== null) {
+  if (fullscreen) {
     document.exitFullscreen();
     fullscreenIcon.classList = "fas fa-expand";
   } else {
@@ -111,7 +111,7 @@ const handleKeyup = (event) => {
   if (key === "Space") {
     handlePlayClick();
   } else if (key === "KeyM") {
-    handleMute();
+    handleMuteClick();
   } else if (key === "KeyF") {
     handleFullscreen();
   }
@@ -123,7 +123,7 @@ const handleEnded = () => {
 };
 
 playBtn.addEventListener("click", handlePlayClick);
-muteBtn.addEventListener("click", handleMute);
+muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleVolumeInput);
 video.addEventListener("loadedmetadata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);

@@ -1,6 +1,6 @@
+import User from "../models/User";
 import fetch from "node-fetch";
 import bcrypt from "bcrypt";
-import User from "../models/User";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
 
@@ -10,12 +10,14 @@ export const postJoin = async (req, res) => {
   if (password !== password2) {
     return res.status(400).render("join", {
       pageTitle,
+      errorMessage: "Password confirmation does not match.",
     });
   }
   const exists = await User.exists({ $or: [{ username }, { email }] });
   if (exists) {
     return res.status(400).render("join", {
       pageTitle,
+      errorMessage: "This username/email is already taken.",
     });
   }
   try {
@@ -26,12 +28,13 @@ export const postJoin = async (req, res) => {
       password,
       location,
     });
+    return res.redirect("/login");
   } catch (error) {
     return res.status(400).render("join", {
-      pageTitle,
+      pageTitle: "Upload Video",
+      errorMessage: error._message,
     });
   }
-  return res.redirect("/login");
 };
 
 export const getLogin = (req, res) =>
@@ -39,16 +42,19 @@ export const getLogin = (req, res) =>
 
 export const postLogin = async (req, res) => {
   const { username, password } = req.body;
+  const pageTitle = "Login";
   const user = await User.findOne({ username, socialOnly: false });
   if (!user) {
     return res.status(400).render("login", {
-      pageTitle: "Login",
+      pageTitle,
+      errorMessage: "An account with this username does not exists.",
     });
   }
   const match = await bcrypt.compare(password, user.password);
   if (!match) {
     return res.status(400).render("login", {
-      pageTitle: "Login",
+      pageTitle,
+      errorMessage: "Wrong password",
     });
   }
   req.session.loggedIn = true;
@@ -84,7 +90,6 @@ export const finishGithubLogin = async (req, res) => {
     })
   ).json();
   if (!("access_token" in tokenRequest)) {
-    // TODO: error notification
     return res.redirect("/login");
   }
   const { access_token } = tokenRequest;
@@ -107,7 +112,6 @@ export const finishGithubLogin = async (req, res) => {
     (email) => email.primary === true && email.verified === true
   );
   if (!emailObj) {
-    // TODO: error notification
     return res.redirect("/login");
   }
   let user = await User.findOne({ email: emailObj.email });
@@ -117,8 +121,8 @@ export const finishGithubLogin = async (req, res) => {
       name: userData.name,
       username: userData.login,
       email: emailObj.email,
-      socailOnly: true,
       password: "",
+      socialOnly: true,
       location: userData.location,
     });
   }
@@ -129,7 +133,7 @@ export const finishGithubLogin = async (req, res) => {
 
 export const logout = (req, res) => {
   req.session.destroy();
-  req.flash("info", "Bye bye");
+  req.flash("info", "Bye Bye");
   return res.redirect("/");
 };
 
@@ -181,7 +185,7 @@ export const postEdit = async (req, res) => {
 };
 
 export const getChangePassword = (req, res) => {
-  if (req.session.loggedInUser.socailOnly) {
+  if (req.session.loggedInUser.socialOnly) {
     req.flash("error", "Can't change password");
     return res.redirect("/");
   }
@@ -200,11 +204,13 @@ export const postChangePassword = async (req, res) => {
   if (!match) {
     return res.status(400).render("users/change-password", {
       pageTitle: "Change Password",
+      errorMessage: "The current password is incorrect.",
     });
   }
   if (newPassword !== newPassword2) {
     return res.status(400).render("users/change-password", {
       pageTitle: "Change Password",
+      errorMessage: "The password does not match the confirmation.",
     });
   }
   user.password = newPassword;
