@@ -4,8 +4,6 @@ const path = require("path");
 const BASE_JS = "./src/client/js/";
 
 module.exports = {
-  mode: "development",
-  watch: true,
   entry: {
     main: path.resolve(BASE_JS, "main.js"),
     videoPlayer: path.resolve(BASE_JS, "videoPlayer.js"),
