@@ -25,6 +25,10 @@
 ### scripts:
 
 ```
+npm start
+npm run build
+npm run build:server
+npm run build:assets
 npm run dev:server
 npm run dev:assets
 ```
