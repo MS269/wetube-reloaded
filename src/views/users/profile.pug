@@ -4,7 +4,7 @@ include ../mixins/video
 block content
   .profile__data 
     if !loggedInUser.avatarUrl
-      span Upload Profile
+      a(href="edit") Upload Profile
     else if loggedInUser.avatarUrl.includes("http")
       img.avatar(src=user.avatarUrl)
     else
