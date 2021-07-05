@@ -3,7 +3,9 @@ include ../mixins/video
 
 block content
   .profile__data 
-    if isHeroku
+    if !loggedInUser.avatarUrl
+      span Upload Profile
+    else if loggedInUser.avatarUrl.includes("http")
       img.avatar(src=user.avatarUrl)
     else
       img.avatar(src='/' + user.avatarUrl)
