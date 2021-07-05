@@ -150,11 +150,11 @@ export const postEdit = async (req, res) => {
         email: sessionEmail,
         username: sessionUsername,
       },
-      isHeroku,
     },
     body: { name, email, username, location },
     file,
   } = req;
+  const isHeroku = process.env.NODE_ENV === "production";
   let searchParam = [];
   if (sessionEmail !== email) {
     searchParam.push({ email });
