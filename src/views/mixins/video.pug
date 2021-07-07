@@ -6,7 +6,7 @@ mixin video(video)
       )
     else
       .video-mixin__thumb(
-        style=`background-image:url(${process.cwd() + '/src/views/' + video.thumbUrl});background-size: cover;background-position: center;`
+        style=`background-image:url(/${video.thumbUrl.replaceAll('\\', '/')});background-size: cover;background-position: center;`
       )
     .video-mixin__data
       span.video-mixin__title= video.title
