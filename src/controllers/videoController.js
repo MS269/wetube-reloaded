@@ -139,7 +139,7 @@ export const registerView = async (req, res) => {
 
 export const createComment = async (req, res) => {
   const {
-    session: { user },
+    session: { loggedInUser },
     body: { text },
     params: { id },
   } = req;
@@ -149,7 +149,7 @@ export const createComment = async (req, res) => {
   }
   const comment = await Comment.create({
     text,
-    owner: user._id,
+    owner: loggedInUser._id,
     video: id,
   });
   video.comments.push(comment._id);
