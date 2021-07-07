@@ -4,12 +4,11 @@ const deleteBtn = document.querySelectorAll(".video__deleteBtn");
 
 const handleDelete = async (event) => {
   const comment = event.target.parentElement;
+  const videoId = videoContainer.dataset.id;
   const commentId = comment.dataset.id;
-  const response = await fetch(`/api/comments/${commentId}/delete`, {
+  const response = await fetch(`/api/videos/${videoId}/delete`, {
     method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ commentId }),
   });
   if (response.status === 201) {
@@ -28,6 +27,7 @@ const addComment = (text, id) => {
   span.innerText = ` ${text}`;
   const span2 = document.createElement("span");
   span2.innerText = "❌";
+  span2.addEventListener("click", handleDelete);
   newComment.appendChild(icon);
   newComment.appendChild(span);
   newComment.appendChild(span2);
