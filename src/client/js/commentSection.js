@@ -42,11 +42,10 @@ const handleSubmit = async (event) => {
   if (text === "") {
     return;
   }
-  const response = await fetch(`/api/videos/${videoId}/add-comment`, {
+  let response;
+  response = await fetch(`/api/videos/${videoId}/create`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ text }),
   });
   textarea.value = "";
