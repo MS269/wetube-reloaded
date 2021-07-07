@@ -23,7 +23,7 @@
   "dependencies": {
     "@ffmpeg/core": "^0.10.0",
     "@ffmpeg/ffmpeg": "^0.10.1",
-    "aws-sdk": "^2.939.0",
+    "aws-sdk": "^2.940.0",
     "bcrypt": "^5.0.1",
     "connect-mongo": "^4.4.1",
     "dotenv": "^10.0.0",
@@ -52,7 +52,7 @@
     "sass": "^1.35.1",
     "sass-loader": "^12.1.0",
     "style-loader": "^2.0.0",
-    "webpack": "^5.42.0",
+    "webpack": "^5.43.0",
     "webpack-cli": "^4.7.2"
   }
 }
