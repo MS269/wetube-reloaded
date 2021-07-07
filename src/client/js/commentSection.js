@@ -1,6 +1,6 @@
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
-const deleteBtn = document.getElementById("deleteBtn");
+const deleteBtn = document.querySelectorAll(".video__deleteBtn");
 
 const handleDelete = async (event) => {
   const comment = event.target.parentElement;
@@ -42,7 +42,7 @@ const handleSubmit = async (event) => {
   if (text === "") {
     return;
   }
-  const response = await fetch(`/api/videos/${videoId}/comment`, {
+  const response = await fetch(`/api/videos/${videoId}/add-comment`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
