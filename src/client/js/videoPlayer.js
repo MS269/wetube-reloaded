@@ -141,7 +141,7 @@ videoContainer.addEventListener("mouseleave", handleMouseLeave);
 document.addEventListener("keyup", handleKeyup);
 
 if (form) {
-  const text = form.getElementById("text");
-  text.addEventListener("focusin", handleFocusIn);
-  text.addEventListener("focusout", handleFocusOut);
+  const textarea = form.querySelector("textarea");
+  textarea.addEventListener("focusin", handleFocusIn);
+  textarea.addEventListener("focusout", handleFocusOut);
 }
