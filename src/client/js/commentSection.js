@@ -42,8 +42,7 @@ const handleSubmit = async (event) => {
   if (text === "") {
     return;
   }
-  let response;
-  response = await fetch(`/api/videos/${videoId}/create`, {
+  const response = await fetch(`/api/videos/${videoId}/create`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ text }),
