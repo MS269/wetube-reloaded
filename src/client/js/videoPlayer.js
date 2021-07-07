@@ -11,6 +11,7 @@ const fullscreenBtn = document.getElementById("fullscreen");
 const fullscreenIcon = fullscreenBtn.querySelector("i");
 const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
+const form = document.getElementById("commentForm");
 
 let controlsTimeout = null;
 let controlsMovementTimeout = null;
@@ -117,6 +118,10 @@ const handleKeyup = (event) => {
   }
 };
 
+const handleFocusIn = () => document.removeEventListener("keyup", handleKeyup);
+
+const handleFocusOut = () => document.addEventListener("keyup", handleKeyup);
+
 const handleEnded = () => {
   const { id } = videoContainer.dataset;
   fetch(`/api/videos/${id}/view`, { method: "POST" });
@@ -134,3 +139,9 @@ fullscreenBtn.addEventListener("click", handleFullscreen);
 videoContainer.addEventListener("mousemove", handleMouseMove);
 videoContainer.addEventListener("mouseleave", handleMouseLeave);
 document.addEventListener("keyup", handleKeyup);
+
+if (form) {
+  const text = form.getElementById("text");
+  text.addEventListener("focusin", handleFocusIn);
+  text.addEventListener("focusout", handleFocusOut);
+}
