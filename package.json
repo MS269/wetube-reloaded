@@ -15,7 +15,7 @@
     "dev:assets": "webpack --mode=development -w"
   },
   "author": "MS269",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/MS269/wetube-reloaded/issues"
   },
